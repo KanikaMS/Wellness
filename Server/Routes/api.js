@@ -1,4 +1,9 @@
 var User = require('../Models/user');
+var jwt = require('jsonwebtoken');
+var secret = 'meanstack';
+var base64Data;
+
+
 
 module.exports = function(router){
      //doctor basic registeration http://localhost:port/api/users
@@ -35,31 +40,21 @@ module.exports = function(router){
               if(!validPassword) {
                   res.json({success: false, message: 'Could not authenticate password'});
               } else {
-                res.json({success: true, message: 'user authenticated'});
+                 var token = jwt.sign({username: user.username, email: user.email}, secret, {expiresIn: '24h'} );
+                res.json({success: true, message: 'user authenticated', token: token });
               }
             
             }
         });
+        
     });
-     
-     
-    UserSchema.methods.generateJwt = function() {
-    var expiry = new Date();
-    expiry.setDate(expiry.getDate() + 17);
-  
-    return jwt.sign({
-      _id: this._id,
-      email: this.email,
-      username: this.username,
-      exp: parseInt(expiry.getTime() / 1000),
-    }, "MY_SECRET"); // DO NOT KEEP YOUR SECRET IN THE CODE!
-  };
+
    
 
     return router;   
 };
 
+jwt.sign({
+    data: 'foobar'
+}, 'secret' , {expiresIn: '24h'});
 
-
-
- 
