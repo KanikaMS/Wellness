@@ -40,7 +40,7 @@ module.exports = function(router){
               if(!validPassword) {
                   res.json({success: false, message: 'Could not authenticate password'});
               } else {
-                 var token = jwt.sign({username: user.username, email: user.email}, secret, {expiresIn: '24h'} );
+                 var token = jwt.sign({username: user.username, email: user.email}, secret, {expiresIn: '96h'} );
                 res.json({success: true, message: 'user authenticated', token: token });
               }
             
@@ -56,5 +56,5 @@ module.exports = function(router){
 
 jwt.sign({
     data: 'foobar'
-}, 'secret' , {expiresIn: '24h'});
+}, 'secret' , {expiresIn: '96h'});
 
