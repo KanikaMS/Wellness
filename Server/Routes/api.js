@@ -41,6 +41,19 @@ module.exports = function(router){
             }
         });
     });
+     
+     
+    UserSchema.methods.generateJwt = function() {
+    var expiry = new Date();
+    expiry.setDate(expiry.getDate() + 17);
+  
+    return jwt.sign({
+      _id: this._id,
+      email: this.email,
+      username: this.username,
+      exp: parseInt(expiry.getTime() / 1000),
+    }, "MY_SECRET"); // DO NOT KEEP YOUR SECRET IN THE CODE!
+  };
    
 
     return router;   
