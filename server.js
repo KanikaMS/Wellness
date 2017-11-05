@@ -4,10 +4,10 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var router = express.Router();
-var kanika = express.Router();
+var router1 = express.Router();
 var appRoutes = require('./Server/Routes/doctor')(router);
 var spareRoutes = require('./Server/Routes/appointment')(router);
-var patientRoutes = require('./Server/Routes/patient')(kanika);
+var patientRoutes = require('./Server/Routes/patient')(router1);
 var path = require('path');
 
 app.use(morgan('dev'));
