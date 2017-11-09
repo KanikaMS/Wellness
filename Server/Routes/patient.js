@@ -54,7 +54,7 @@ patientRouter.put('/updatePatient/:id', function(req, res){
     
     Patient.update({_id: mongojs.ObjectId(req.params.id)}, patient, opts, function(error) {
       
-      res.json({error: error});
+      res.json({success:true,message: "Sucessfully updated", error: error});
     });
 
 });
