@@ -6,7 +6,7 @@ module.exports = function(patientRouter){
      
       
  
-patientRouter.put('/:id', function(req, res){
+patientRouter.put('/updatePatient/:id', function(req, res){
  var password = Patient.hashpassword(req.body.password);
      var patient = {
         username: req.body.username,
