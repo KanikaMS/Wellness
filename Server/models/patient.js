@@ -78,16 +78,6 @@ PatientSchema.pre('save', function(next){
         return bcrypt.compareSync(password, this.password);
     };  
     
-    PatientSchema.methods.generateJwt = function() {
-        var expiry = new Date();
-        expiry.setDate(expiry.getDate() + 7);
-      
-        return jwt.sign({
-          _id: this._id,
-          email: this.email,
-          username: this.username,
-          exp: parseInt(expiry.getTime() / 1000),
-        }, "MY_SECRET"); 
-      };
+   
 
 module.exports = mongoose.model('Patient', PatientSchema);
